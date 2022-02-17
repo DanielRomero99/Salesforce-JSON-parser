@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>AssignAgentHlj</fullName>
+        <field>OwnerId</field>
+        <lookupValue>test.agenthlj@gmail.com</lookupValue>
+        <lookupValueType>User</lookupValueType>
+        <name>Assign to agent hlj</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>AssignAgentLoo</fullName>
+        <field>OwnerId</field>
+        <lookupValue>test.agentloo@gmail.com</lookupValue>
+        <lookupValueType>User</lookupValueType>
+        <name>Assign to agent loo</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>AssignAgentMed</fullName>
+        <field>OwnerId</field>
+        <lookupValue>test.agentmed@gmail.com</lookupValue>
+        <lookupValueType>User</lookupValueType>
+        <name>Assign to agent med</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>SetHighPriority</fullName>
+        <field>Priority__c</field>
+        <literalValue>High</literalValue>
+        <name>Set high priority</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>SetLowPriority</fullName>
+        <field>Priority__c</field>
+        <literalValue>Low</literalValue>
+        <name>Set low priority</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>SetMediumPriority</fullName>
+        <field>Priority__c</field>
+        <literalValue>Medium</literalValue>
+        <name>Set medium priority</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Assign agent hlj to account</fullName>
+        <actions>
+            <name>AssignAgentHlj</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Account.Priority__c</field>
+            <operation>equals</operation>
+            <value>High</value>
+        </criteriaItems>
+        <description>Assigns the account to the appropriate agent based on the account&apos;s priority</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Assign agent loo to account</fullName>
+        <actions>
+            <name>AssignAgentLoo</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Account.Priority__c</field>
+            <operation>equals</operation>
+            <value>Low</value>
+        </criteriaItems>
+        <description>Assigns the account to the appropriate agent based on the account&apos;s priority.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Assign agent med to account</fullName>
+        <actions>
+            <name>AssignAgentMed</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Account.Priority__c</field>
+            <operation>equals</operation>
+            <value>Medium</value>
+        </criteriaItems>
+        <description>Assigns the account to the appropriate agent based on the account&apos;s priority</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Set high account priority</fullName>
+        <actions>
+            <name>SetHighPriority</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Account.AnnualRevenue</field>
+            <operation>greaterThan</operation>
+            <value>100000</value>
+        </criteriaItems>
+        <description>Sets the value of the Priority field based on annual revenue.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Set low account priority</fullName>
+        <actions>
+            <name>SetLowPriority</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Account.AnnualRevenue</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Account.AnnualRevenue</field>
+            <operation>lessOrEqual</operation>
+            <value>50000</value>
+        </criteriaItems>
+        <description>Sets the value of the Priority field based on annual revenue.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Set medium account priority</fullName>
+        <actions>
+            <name>SetMediumPriority</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Account.AnnualRevenue</field>
+            <operation>greaterThan</operation>
+            <value>50000</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Account.AnnualRevenue</field>
+            <operation>lessOrEqual</operation>
+            <value>100000</value>
+        </criteriaItems>
+        <description>Sets the value of the Priority field based on annual revenue.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AusenciaDatos</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+ISBLANK(Email),
+ISBLANK(Phone)
+)</errorConditionFormula>
+    <errorMessage>Debe introducir al menos alguno de los siguentes datos: Email, Phone</errorMessage>
+</ValidationRule>
